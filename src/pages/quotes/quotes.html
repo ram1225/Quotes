@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title text-center>
+        {{categoryName}}
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+    <ion-list>
+      <ng-container *ngIf="quotes">
+          <ion-card  *ngFor="let data of quotes ; let position=index">
+              <ion-card-header text-center>
+                  #{{ position+1 }}
+                </ion-card-header>
+            <ion-card-content>
+              {{ data.quote }}
+             <ion-item text-right>-- {{ data.author }}</ion-item>
+            </ion-card-content>
+            <button  ion-button  float-right class="margin-10" (click)="presentConfirm(position)">
+              <ion-icon [color]="(quotes[position].favorite)?'dark':'light'"  padding item-start name="star"></ion-icon>Favorite</button>
+          </ion-card>
+      </ng-container>
+     
+      <ion-card *ngIf="!quotes">
+        <ion-card-header>
+          There is no data
+        </ion-card-header>
+      </ion-card>
+    </ion-list>
+  
+  
+  </ion-content>
